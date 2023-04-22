@@ -27,3 +27,27 @@ Update the instance and Install Nginx
 Update /etc/hosts file for local DNS with Web Servers names (e.g. Web1 and Web2) and their local IP addresses.
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/102925329/233777264-3ea491fc-8d16-4641-9418-559c3da4dca4.png">
+
+Configure Nginx as a load balancer to point traffic to the resolvable DNS names of the webservers
+
+    sudo vi /etc/nginx/nginx.conf
+
+    #insert following configuration into http section
+    
+     upstream myproject {
+        server Web1 weight=5;
+        server Web2 weight=5;
+      }
+    
+    server {
+        listen 80;
+        server_name www.domain.com;
+        location / {
+          proxy_pass http://myproject;
+        }
+      }
+    
+    #comment out this line
+    #       include /etc/nginx/sites-enabled/*;
+
+<img width="636" alt="image" src="https://user-images.githubusercontent.com/102925329/233777663-b0b896f6-010b-41db-ab42-dd907327df7d.png">
