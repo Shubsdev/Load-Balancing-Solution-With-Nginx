@@ -51,3 +51,10 @@ Configure Nginx as a load balancer to point traffic to the resolvable DNS names 
     #       include /etc/nginx/sites-enabled/*;
 
 <img width="636" alt="image" src="https://user-images.githubusercontent.com/102925329/233777663-b0b896f6-010b-41db-ab42-dd907327df7d.png">
+
+Restart Nginx and verify server status.
+
+    sudo systemctl restart nginx
+    sudo systemctl status nginx
+    
+
